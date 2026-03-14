@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "NodeNext", // обязательно при NodeNext
-    "moduleResolution": "NodeNext", // поддержка ESM + .ts/.js файлов
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "types": ["node", "@playwright/test"],
-    "verbatimModuleSyntax": true // оставь true для корректной генерации import/export
+    "verbatimModuleSyntax": true
   },
   "include": ["tests/**/*.ts", "playwright.config.ts"]
 }

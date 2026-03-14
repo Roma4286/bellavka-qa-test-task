@@ -1,14 +1,27 @@
 {
   "name": "bellavka-qa-test-task",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "format": "npx prettier --write .",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.5.0",
-    "typescript": "^5.9.3"
+    "eslint": "^9.39.4",
+    "globals": "^17.4.0",
+    "jiti": "^2.6.1",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.0"
+  },
+  "dependencies": {
+    "winston": "^3.19.0"
   }
 }
