@@ -1,0 +1,14 @@
+{
+  "name": "bellavka-qa-test-task",
+  "version": "1.0.0",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}
