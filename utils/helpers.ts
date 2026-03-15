@@ -2,6 +2,7 @@ import { Page } from '@playwright/test';
 
 export async function closeModalIfVisible(page: Page, textOnModal: string = '') {
   const modal = page.locator('div.v-modal__desktop', { hasText: textOnModal });
+  await modal.waitFor({ state: 'visible' });
   if (!(await modal.isVisible())) return;
 
   const closeButton = modal.locator('.v-modal__close');
