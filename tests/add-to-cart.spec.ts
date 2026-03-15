@@ -1,30 +1,29 @@
-import { test, type Page } from '@playwright/test';
-
-async function closeModalIfVisible(page: Page) {
-  const modal = page.locator('div.v-modal.sale[role="dialog"]');
-  const closeButton = modal.locator('.v-modal__close');
-
-  await modal.waitFor({ state: 'visible' });
-
-  await closeButton.click();
-
-  await modal.waitFor({ state: 'hidden' });
-}
+import { test, expect } from '@playwright/test';
+import { ClothesPage } from '../pages/clothes.page';
+import { ProductModal } from '../pages/product-modal.page';
+import { CartPage } from '../pages/cart.page';
+import { cleanWhitespace } from '../utils/helpers';
+import { HomePage } from '@pages/home.page';
 
 test('Add product to cart', async ({ page }) => {
-  await page.goto('https://ramonki.by/');
+  const home = new HomePage(page);
+  const clothes = new ClothesPage(page);
+  const productModal = new ProductModal(page);
+  const cart = new CartPage(page);
 
-  await closeModalIfVisible(page);
-  await page.getByRole('button', { name: 'Каталог' }).click();
-  const clothesLink = page.getByRole('link', { name: /^Одежда$/ });
+  await home.goto();
+  await home.openClothesCategory();
+  await clothes.openDresses();
 
-  await clothesLink.click();
-  await page.waitForURL('**/catalog/cat-odezda-1782510');
+  const { description, price, buyButton } = await clothes.getFirstProductInfo();
+  await buyButton.click();
 
-  const dressesLink = page.locator('li.filter__category', {
-    hasText: 'Платья и сарафаны',
-  });
+  const size = await productModal.selectSize();
 
-  await dressesLink.click();
-  await page.waitForURL('**/catalog/cat-platia-i-sarafany-38365');
+  await cart.open();
+  const { description: descCart, price: priceCart, size: sizeCart } = await cart.getCartItemInfo();
+
+  expect(descCart).toBe(description);
+  expect(sizeCart + ' ').toBe('Размер ' + size);
+  expect(cleanWhitespace(priceCart)).toBe(cleanWhitespace(price));
 });

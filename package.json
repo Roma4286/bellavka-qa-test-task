@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
     "format": "npx prettier --write .",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix"
