@@ -2,6 +2,7 @@
   "name": "bellavka-qa-test-task",
   "version": "1.0.0",
   "scripts": {
+    "test": "npx playwright test",
     "format": "npx prettier --write .",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix"
